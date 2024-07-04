@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage('Hello') {
             steps {
-                echo "Hello  $th3usrname"
+                echo "Hello  Jenkins from Depi-DevOps Track"
             }
         }
     }
