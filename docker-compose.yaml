@@ -16,9 +16,9 @@ services:
     container_name: mongo-express-services1
     environment:
       ME_CONFIG_MONGODB_SERVER: mongo-db-services1
-      ME_CONFIG_MONGODB_ADMINUSERNAME: admin
-      ME_CONFIG_MONGODB_ADMINPASSWORD: admin
-      ME_CONFIG_BASICAUTH: false
+      ME_CONFIG_MONGODB_AUTH_USERNAME: admin
+      ME_CONFIG_MONGODB_AUTH_PASSWORD: admin
+      # ME_CONFIG_BASICAUTH: false
     ports:
       - 8081:8081
     volumes:  
