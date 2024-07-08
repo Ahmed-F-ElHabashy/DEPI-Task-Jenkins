@@ -17,10 +17,10 @@ services:
     environment:
       ME_CONFIG_MONGODB_SERVER: mongo-db-services1
       ME_CONFIG_MONGODB_AUTH_USERNAME: admin
-      ME_CONFIG_MONGODB_AUTH_PASSWORD: admin
-      # ME_CONFIG_BASICAUTH: false
+      ME_CONFIG_MONGODB_AUTH_PASSWORD: admin #pass
+      # ME_CONFIG_BASICAUTH: false #un hash in case i want to make a login without pass and useername
     ports:
-      - 8081:8081
+      - 8081:8081 # http://localhost:8081 or http://0.0.0.0:8081
     volumes:  
       - ./data:/data/db
     depends_on:
