@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage('Welcome Message') {
             steps {
-                echo "Hello $loggedusername .. Hope you are doing well ISA .."
+                echo "Hello $loggedusername .. Hope you are doing well ISA .." //matensash t add it as string inside the Jenkins :D
             }
         }
         stage('Checking the Docker Process Status ..') {
@@ -13,25 +13,26 @@ pipeline {
                 sh 'docker compose ps'
             }
         }
-         stage('Starting the YML file Container ...') {
+        stage('Starting the YML file Container ...') {
             steps {
-                sh 'docker compose up -d'
-                sh 'docker compose ps'
+                script {
+                    // Start the containers
+                    sh 'docker compose up -d'
+                    sh 'docker compose ps'
+                }
             }
             post {
-                failure {
-                sh 'docker compose down --remove-orphans -v'
-                sh 'docker compose ps'
-                sh 'docker compose up -d' 
-                }
                 success {
-                    echo"Done .. its Running Successfully now .. Have Fun Habashyyyy.."
+                    echo "Done .. its Running Successfully now .. Have Fun Habashyyyy.."
                 }
-
-                
-
+                failure {
+                    // In case of failure, clean up and attempt to start again
+                    script {
+                        sh 'docker compose down --remove-orphans -v'
+                        sh 'docker compose up -d'
+                    }
+                }
             }
         }
     }
-    
 }
